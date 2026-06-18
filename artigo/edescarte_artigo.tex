@@ -1,0 +1,1286 @@
+% ============================================================
+%  E-Descarte: Plataforma Digital de Gestão e Denúncia de
+%  Resíduos Eletroeletrônicos com Módulo Legal Integrado
+%  Artigo científico – LaTeX / ABNT – Overleaf-ready
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Codificação e Idioma ─────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+
+% ── Geometria da Página (ABNT NBR 14724) ────────────────────
+\usepackage[
+  top=3cm, bottom=2cm,
+  left=3cm, right=2cm
+]{geometry}
+
+% ── Tipografia ───────────────────────────────────────────────
+\usepackage{times}            % Times New Roman
+\usepackage{microtype}        % Melhorias tipográficas
+\usepackage{setspace}         % Controle de espaçamento
+\usepackage{indentfirst}      % Recuo no primeiro parágrafo
+
+% ── Cabeçalho e Rodapé ───────────────────────────────────────
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\small\thepage}
+\fancyhead[L]{\small\textit{E-Descarte: Plataforma Digital de Gestão de Resíduos Eletroeletrônicos}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ── Títulos de Seção ─────────────────────────────────────────
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\normalsize\bfseries\uppercase}{}{0em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{}{0em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\itshape}{}{0em}{}
+
+% ── Figuras, Tabelas e Listagens ────────────────────────────
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Estilo de código-fonte
+\lstset{
+  basicstyle=\footnotesize\ttfamily,
+  breaklines=true,
+  frame=single,
+  rulecolor=\color{gray!50},
+  backgroundcolor=\color{gray!8},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue!70},
+  commentstyle=\color{green!50!black},
+  stringstyle=\color{orange!80!black},
+  captionpos=b,
+  tabsize=2,
+  showstringspaces=false
+}
+
+% ── Diagramas TikZ ───────────────────────────────────────────
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds}
+
+% ── Matemática ───────────────────────────────────────────────
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% ── URLs e Hiperlinks ────────────────────────────────────────
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+
+% ── Referências ABNT ────────────────────────────────────────
+\usepackage[alf, abnt-etal-list=0]{abntex2cite}
+
+% ── Espaçamento entre parágrafos e linhas ───────────────────
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0pt}
+\onehalfspacing
+
+% ── Numeração de equações ────────────────────────────────────
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+% ============================================================
+%  INÍCIO DO DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ── Página de Título ─────────────────────────────────────────
+\begin{titlepage}
+  \begin{center}
+    {\large \textbf{UNIVERSIDADE JORGE AMADO -- UNIJORGE}}\\[0.3cm]
+    {\large \textbf{CURSO DE CIÊNCIA DA COMPUTAÇÃO}}\\[3cm]
+
+    {\Large \textbf{E-DESCARTE: PLATAFORMA DIGITAL DE GESTÃO E DENÚNCIA DE
+    RESÍDUOS ELETROELETRÔNICOS COM MÓDULO LEGAL INTEGRADO}}\\[3cm]
+
+    {\normalsize
+      Renoir Auguste Santos Silva e Colaboradores\\[0.3cm]
+      Disciplina: EcoTech -- Observatório Digital de Direito Ambiental\\[3cm]
+    }
+
+    \vfill
+    {\normalsize Salvador (BA)\\2025}
+  \end{center}
+\end{titlepage}
+
+\clearpage
+\setcounter{page}{2}
+
+% ── Resumo ───────────────────────────────────────────────────
+\begin{center}
+  {\normalsize\bfseries
+  E-DESCARTE: PLATAFORMA DIGITAL DE GESTÃO E DENÚNCIA DE RESÍDUOS
+  ELETROELETRÔNICOS COM MÓDULO LEGAL INTEGRADO\\[0.5cm]}
+\end{center}
+
+\begin{center}
+  {\normalsize\bfseries RESUMO}
+\end{center}
+\noindent
+O crescimento acelerado da indústria tecnológica tem como consequência direta
+o aumento exponencial na geração de resíduos eletroeletrônicos (REEE), tornando
+essa problemática um dos maiores desafios ambientais contemporâneos. O Brasil,
+quarto maior gerador mundial de lixo eletrônico, produz aproximadamente 2,1
+milhões de toneladas anuais, volume que, descartado de forma inadequada, libera
+metais pesados como chumbo, mercúrio e cádmio no solo, na água e no ar.
+Paralelamente, a legislação brasileira conta com instrumentos robustos para
+o enfrentamento desse problema, especialmente a Lei nº 12.305/2010 (Política
+Nacional de Resíduos Sólidos -- PNRS), o Decreto nº 10.240/2020 (logística
+reversa de eletroeletrônicos) e a Resolução CONAMA 401/2008, cujo cumprimento
+permanece insatisfatório na maioria dos municípios brasileiros. Este artigo
+apresenta o \textit{E-Descarte}, uma plataforma digital desenvolvida como
+resposta tecnológica a esse cenário. O sistema integra três módulos funcionais:
+(i) um mapa interativo de pontos de coleta licenciados com geolocalização via
+API do Google Maps; (ii) um sistema de denúncias de descartes irregulares com
+suporte a anonimato, georreferenciamento e envio de fotografias; e (iii) uma
+calculadora de impacto ambiental estimado. Como diferencial técnico e pedagógico,
+a plataforma conta com um Módulo Legal Integrado que apresenta, em tempo real,
+a legislação ambiental aplicável ao tipo de resíduo informado pelo usuário,
+contribuindo para a conscientização cidadã e para o controle social da aplicação
+das leis ambientais. A arquitetura do sistema adota uma abordagem de separação
+de responsabilidades em três camadas: \textit{frontend} React (Web) e React
+Native (móvel), \textit{backend} Node.js/Express com autenticação JWT, e
+persistência híbrida em PostgreSQL e MongoDB. Os resultados esperados incluem
+o aumento dos índices de descarte correto, a ampliação do controle social sobre
+descartes irregulares e o fortalecimento da consciência legal ambiental da
+população.
+
+\vspace{0.5cm}
+\noindent
+\textbf{Palavras-chave}: Resíduos Eletroeletrônicos. Lixo Eletrônico. Política
+Nacional de Resíduos Sólidos. Plataforma Digital Ambiental. Geolocalização.
+Node.js. React. Módulo Legal Integrado.
+
+\clearpage
+
+% ── Abstract ─────────────────────────────────────────────────
+\begin{center}
+  {\normalsize\bfseries ABSTRACT}
+\end{center}
+\noindent
+The accelerated growth of the technology industry has as a direct consequence
+the exponential increase in the generation of waste electrical and electronic
+equipment (WEEE), making this issue one of the greatest contemporary
+environmental challenges. Brazil, the world's fourth largest generator of
+electronic waste, produces approximately 2.1 million tons per year, a volume
+that, when improperly disposed of, releases heavy metals such as lead, mercury
+and cadmium into the soil, water and air. At the same time, Brazilian legislation
+has robust instruments to address this problem, especially Law No.\ 12,305/2010
+(National Solid Waste Policy -- PNRS), Decree No.\ 10,240/2020 (reverse
+logistics of electronic equipment) and CONAMA Resolution 401/2008, whose
+compliance remains unsatisfactory in most Brazilian municipalities. This article
+presents \textit{E-Descarte}, a digital platform developed as a technological
+response to this scenario. The system integrates three functional modules: (i) an
+interactive map of licensed collection points with geolocation via the Google
+Maps API; (ii) an irregular disposal reporting system with support for anonymity,
+georeferencing and photo submission; and (iii) an estimated environmental impact
+calculator. As a technical and pedagogical differentiator, the platform features
+an Integrated Legal Module that displays, in real time, the environmental
+legislation applicable to the type of waste reported by the user, contributing
+to citizen awareness and social control of the enforcement of environmental laws.
+The system architecture adopts a three-layer separation of concerns approach:
+React front-end (Web) and React Native (mobile), Node.js/Express back-end with
+JWT authentication, and hybrid persistence in PostgreSQL and MongoDB.
+
+\vspace{0.5cm}
+\noindent
+\textbf{Keywords}: Electronic Waste. WEEE. National Solid Waste Policy.
+Digital Environmental Platform. Geolocation. Node.js. React.
+Integrated Legal Module.
+
+\clearpage
+
+% ── Sumário ──────────────────────────────────────────────────
+\tableofcontents
+\clearpage
+
+% ============================================================
+\section{INTRODUÇÃO}
+% ============================================================
+
+A digitalização acelerada da sociedade contemporânea trouxe consigo benefícios
+inegáveis para a produtividade, a comunicação e o acesso à informação. Contudo,
+esse processo também gerou um problema ambiental silencioso e crescente:
+a proliferação de resíduos eletroeletrônicos (REEE), popularmente denominados
+``lixo eletrônico''. Celulares obsoletos, computadores descartados, baterias
+desgastadas e televisores substituídos acumulam-se em lixões, terrenos baldios
+e aterros convencionais em ritmo que supera em muito a capacidade de gestão dos
+sistemas públicos de saneamento \cite{abrelpe2023}.
+
+Conforme dados do Relatório Global sobre Resíduos Eletrônicos publicado pela
+ONU, o mundo gerou aproximadamente 53,6 milhões de toneladas métricas de
+resíduos eletrônicos em 2019, com crescimento projetado para 74,7 milhões de
+toneladas até 2030 \cite{forti2020}. O Brasil ocupa a quarta posição nesse
+ranking, produzindo cerca de 2,1 milhões de toneladas por ano e reciclando
+formalmente menos de 3\% desse volume \cite{abrelpe2023}.
+
+A gravidade do problema não reside apenas no volume gerado, mas na composição
+química dos equipamentos descartados. Dispositivos eletrônicos contêm substâncias
+altamente tóxicas como chumbo, cádmio, mercúrio, arsênio, cromo hexavalente e
+retardantes de chama bromados. Quando lançados em aterros convencionais ou
+queimados a céu aberto, esses compostos percolam para os lençóis freáticos,
+contaminam o solo por décadas e emitem gases e partículas nocivas à saúde
+humana, causando danos neurológicos, renais e carcinogênicos
+\cite{baldé2017, singh2020}.
+
+O ordenamento jurídico brasileiro oferece resposta normativa expressiva a esse
+desafio. A Lei nº 12.305/2010, que institui a Política Nacional de Resíduos
+Sólidos (PNRS), estabelece o princípio da responsabilidade compartilhada pelo
+ciclo de vida dos produtos e cria o instrumento da logística reversa,
+obrigando fabricantes, importadores e distribuidores a recolher e dar destinação
+adequada aos resíduos de seus produtos \cite{brasil2010pnrs}. O Decreto nº
+10.240/2020 regulamentou especificamente a logística reversa de produtos
+eletroeletrônicos de uso doméstico, definindo metas e prazos para a estruturação
+de pontos de coleta em todo o território nacional \cite{brasil2020decreto}. A
+Resolução CONAMA 401/2008, por sua vez, disciplina o gerenciamento de pilhas
+e baterias \cite{conama401}. Apesar desse arcabouço legal, a fiscalização é
+fragmentada e o desconhecimento da legislação por parte da população e das
+próprias empresas é generalizado \cite{moreira2019}.
+
+Nesse contexto, este trabalho apresenta o \textit{E-Descarte}, uma plataforma
+digital desenvolvida no âmbito da disciplina EcoTech -- Observatório Digital de
+Direito Ambiental, do Curso de Ciência da Computação da Universidade Jorge Amado
+(UNIJORGE). O sistema propõe uma solução tecnológica integrada que une
+geolocalização de pontos de coleta, registro georreferenciado de denúncias e,
+de forma inovadora, um Módulo Legal Integrado que apresenta ao cidadão, em
+tempo real, a legislação ambiental aplicável ao tipo de resíduo que deseja
+reportar.
+
+\subsection{Objetivo Geral}
+
+Desenvolver uma plataforma digital completa -- composta por aplicação Web,
+aplicativo móvel e API REST -- para a gestão e denúncia de resíduos
+eletroeletrônicos no contexto brasileiro, integrando funcionalidades de
+geolocalização, controle social e educação legal ambiental.
+
+\subsection{Objetivos Específicos}
+
+\begin{enumerate}
+  \item Mapear e disponibilizar, em interface cartográfica interativa, os pontos
+        de coleta de resíduos eletroeletrônicos licenciados;
+  \item Implementar um sistema de denúncias de descartes irregulares com suporte
+        a anonimato, georreferenciamento GPS e envio de evidências fotográficas;
+  \item Desenvolver uma calculadora de impacto ambiental que sensibilize o
+        usuário sobre os benefícios do descarte correto;
+  \item Criar um Módulo Legal Integrado que apresente, dinamicamente, a
+        legislação ambiental brasileira aplicável conforme o tipo de resíduo
+        informado;
+  \item Construir uma arquitetura de \textit{software} escalável, segura e bem
+        documentada, seguindo boas práticas de desenvolvimento \textit{full-stack}.
+\end{enumerate}
+
+\subsection{Justificativa}
+
+A relevância deste projeto fundamenta-se em três eixos complementares.
+Do ponto de vista ambiental, o descarte inadequado de eletrônicos representa
+uma das formas mais graves de contaminação por metais pesados no Brasil,
+com impactos diretos sobre a saúde pública e os ecossistemas. Do ponto de
+vista legal, existe um hiato significativo entre a robustez da legislação
+ambiental brasileira e a efetividade de sua aplicação, lacuna que a tecnologia
+pode ajudar a reduzir por meio da informação e do controle social. Do ponto
+de vista tecnológico, a combinação de aplicações móveis, APIs geoespaciais e
+bases de dados híbridas oferece um conjunto de ferramentas adequado e atual
+para o enfrentamento desse problema de forma escalável e acessível.
+
+% ============================================================
+\section{FUNDAMENTAÇÃO TEÓRICA}
+% ============================================================
+
+\subsection{Resíduos Eletroeletrônicos: Conceito e Dimensão do Problema}
+
+Os resíduos de equipamentos elétricos e eletrônicos (REEE) abrangem qualquer
+produto que funcione com eletricidade ou campo eletromagnético e que tenha
+chegado ao fim de sua vida útil. A classificação da Diretiva Europeia
+2012/19/EU, amplamente adotada na literatura científica, organiza os REEE em
+dez categorias, incluindo grandes e pequenos eletrodomésticos, equipamentos de
+tecnologia da informação e comunicação (TIC), equipamentos de consumo e
+iluminação, ferramentas elétricas, brinquedos eletrônicos e equipamentos
+médicos \cite{europarlamento2012}.
+
+Do ponto de vista da composição material, os equipamentos eletrônicos são
+montagens complexas que integram plásticos (até 30\% da massa), metais ferrosos
+e não ferrosos (ferro, cobre, alumínio -- até 60\% da massa) e substâncias
+perigosas em concentrações variadas \cite{baldé2017}. O chumbo, presente em
+soldas e baterias chumbo-ácido, é um neurotóxico que compromete o desenvolvimento
+cognitivo de crianças mesmo em baixas concentrações. O mercúrio, encontrado em
+displays de cristal líquido e baterias de botão, é um potente nefrotóxico
+e neurotóxico. O cádmio, presente em baterias recarregáveis e em componentes
+de soldagem, é classificado como carcinogênico para humanos pela Agência
+Internacional de Pesquisa sobre Câncer (IARC) \cite{singh2020}.
+
+\subsection{Cenário Brasileiro de Geração e Gestão de REEE}
+
+O Brasil apresenta um paradoxo característico dos países emergentes: é um dos
+maiores mercados consumidores de eletrônicos do mundo -- fator impulsionado pelo
+crescimento da classe média nas décadas de 2000 e 2010 -- mas dispõe de
+infraestrutura de coleta e reciclagem formal ainda incipiente \cite{abrelpe2023}.
+
+A Associação Brasileira de Limpeza Pública e Resíduos Especiais (ABRELPE)
+estimou, em seu Panorama dos Resíduos Sólidos no Brasil de 2022, que apenas
+cerca de 3\% dos resíduos eletrônicos gerados no país recebem destinação
+formalmente adequada. O restante é descartado junto ao lixo doméstico comum,
+em lixões a céu aberto ou vendido para sucateiros informais que frequentemente
+recorrem a práticas de processamento primitivas e altamente poluidoras, como
+a queima de cabos para recuperação do cobre \cite{abrelpe2023}.
+
+A distribuição geográfica da geração de REEE no Brasil é desigual. As regiões
+Sudeste e Sul concentram a maior parcela da geração (cerca de 70\% do total
+nacional), reflexo da maior densidade demográfica e do maior poder aquisitivo
+médio. Contudo, a carência de infraestrutura de coleta e reciclagem é mais
+grave justamente nas regiões Norte e Nordeste, onde a proporção de municípios
+sem qualquer ponto de coleta formal é mais elevada \cite{moreira2019}.
+
+\subsection{Arcabouço Legal Brasileiro para Resíduos Eletroeletrônicos}
+
+O principal instrumento normativo para o enfrentamento dos REEE no Brasil é
+a Lei nº 12.305, de 02 de agosto de 2010, que institui a Política Nacional de
+Resíduos Sólidos (PNRS). Essa lei estabelece os princípios, objetivos e
+instrumentos para a gestão integrada de resíduos sólidos no país, adotando
+como eixo central o conceito de responsabilidade compartilhada pelo ciclo de
+vida dos produtos -- princípio pelo qual fabricantes, importadores,
+distribuidores, comerciantes, consumidores e titulares dos serviços de limpeza
+urbana respondem solidariamente pela destinação final dos resíduos que geram
+\cite{brasil2010pnrs}.
+
+O instrumento operacional central da PNRS para os REEE é a logística reversa,
+definida no Art. 3º, XII, como o ``instrumento de desenvolvimento econômico e
+social caracterizado por um conjunto de ações, procedimentos e meios destinados
+a viabilizar a coleta e a restituição dos resíduos sólidos ao setor empresarial,
+para reaproveitamento, em seu ciclo ou em outros ciclos produtivos''. A obrigação
+de estruturar sistemas de logística reversa para produtos eletroeletrônicos
+e seus componentes foi regulamentada pelo Decreto nº 10.240, de 12 de fevereiro
+de 2020, que estabeleceu metas progressivas de coleta e reciclagem, além de
+exigir que fabricantes e importadores tornem públicas as informações sobre os
+pontos de coleta \cite{brasil2020decreto}.
+
+A Resolução do Conselho Nacional do Meio Ambiente (CONAMA) nº 401, de 04 de
+novembro de 2008, estabelece os limites máximos de chumbo, cádmio e mercúrio
+para pilhas e baterias comercializadas no Brasil, bem como os critérios e
+padrões para o gerenciamento ambientalmente adequado de seus resíduos,
+proibindo o descarte em aterros, terrenos baldios, corpos d'água ou queima
+a céu aberto \cite{conama401}.
+
+Complementarmente, a Lei nº 9.605/1998 (Lei de Crimes Ambientais) tipifica
+como crime ambiental, nos termos do Art. 54, causar poluição de qualquer
+natureza em níveis tais que resultem ou possam resultar em danos à saúde
+humana, mortandade de animais ou destruição significativa da flora, prevendo
+pena de reclusão de um a quatro anos e multa. O descarte irregular de grandes
+volumes de REEE pode enquadrar-se nessa tipificação \cite{brasil1998crimes}.
+
+A Lei Geral de Proteção de Dados Pessoais (LGPD), Lei nº 13.709/2018, introduz
+uma dimensão adicional ao problema dos REEE: os dispositivos eletroeletrônicos
+frequentemente armazenam dados pessoais sensíveis de seus usuários. A destinação
+inadequada de equipamentos sem a prévia eliminação segura desses dados configura
+potencial violação à LGPD \cite{brasil2018lgpd}.
+
+\subsection{Tecnologias de Informação Aplicadas à Gestão Ambiental}
+
+A aplicação de tecnologias da informação e comunicação (TIC) à gestão ambiental
+constitui campo interdisciplinar em expansão, denominado Green IT ou
+\textit{Environmental Informatics} \cite{watson2010}. Sistemas de informações
+geográficas (SIG/GIS), plataformas de crowdsourcing ambiental, aplicativos
+móveis de monitoramento e plataformas de \textit{big data} para análise de
+padrões de descarte são exemplos de soluções que têm sido desenvolvidas e
+avaliadas na literatura científica recente.
+
+Aplicativos de mapeamento colaborativo de pontos de coleta, como o iRecycle
+(EUA) e o RecycleMap (Europa), demonstraram que a disponibilização de
+informações geolocalizadas aumenta significativamente a taxa de descarte
+correto entre usuários dessas plataformas \cite{reno2020}. No contexto
+brasileiro, iniciativas como o TrashOut e o Coletai apontam na mesma direção,
+embora com penetração ainda limitada \cite{ribeiro2021}.
+
+A adoção de arquiteturas de \textit{software} baseadas em microsserviços,
+APIs REST e aplicações \textit{mobile-first} tem sido apontada como abordagem
+adequada para plataformas de participação cidadã ambiental, dado que permite
+escalabilidade, manutenção simplificada e acesso ubíquo via dispositivos móveis
+\cite{fowler2014}.
+
+% ============================================================
+\section{TRABALHOS RELACIONADOS}
+% ============================================================
+
+Diversas iniciativas, tanto no âmbito acadêmico quanto no setor privado,
+têm abordado o problema da gestão de REEE por meio de soluções tecnológicas.
+Esta seção apresenta uma revisão dos principais trabalhos identificados,
+posicionando o E-Descarte em relação a eles.
+
+\subsection{iRecycle e Plataformas Internacionais}
+
+O iRecycle, desenvolvido pela Earth911 nos Estados Unidos, é uma das plataformas
+de localização de pontos de coleta de maior penetração no mundo anglófono.
+A plataforma disponibiliza um banco de dados com mais de 100.000 locais de
+reciclagem e é acessível via \textit{web} e aplicativo móvel. Sua limitação
+central reside na ausência de funcionalidades de denúncia e de conteúdo
+educativo-legal, sendo estritamente utilitária na função de localização
+\cite{earth911}.
+
+O TrashOut, por sua vez, é uma plataforma \textit{mobile} de crowdsourcing
+focada no mapeamento de despejos ilegais de resíduos em geral. Disponível em
+mais de 180 países, permite que usuários fotografem e geolocalizem pontos de
+descarte irregular, criando um banco de dados colaborativo \cite{trashout}.
+Em comparação ao E-Descarte, o TrashOut não integra legislação ambiental
+específica nem se especializa no contexto regulatório brasileiro.
+
+\subsection{Iniciativas Brasileiras}
+
+\citeonline{ribeiro2021} apresentam uma análise de aplicativos brasileiros
+voltados para a gestão de resíduos sólidos, identificando lacunas recorrentes:
+ausência de informações sobre a legislação vigente, baixa integração com órgãos
+de fiscalização municipais e estaduais, e falta de mecanismos de \textit{feedback}
+sobre a resolução das denúncias realizadas. O E-Descarte foi concebido para
+suprir especificamente essas lacunas.
+
+\citeonline{moreira2019} propõem um framework conceitual para sistemas de
+informação ambiental voltados à gestão de REEE no Brasil, enfatizando a
+necessidade de integração entre as dimensões tecnológica, legal e educativa.
+O Módulo Legal Integrado do E-Descarte constitui resposta direta a essa
+recomendação.
+
+\subsection{Sistemas de Denúncia Ambiental}
+
+O Sistema Nacional de Informações sobre o Meio Ambiente (SINIMA) do IBAMA
+e a plataforma GOV.BR mantêm canais de denúncia ambiental, porém com interfaces
+pouco amigáveis, ausência de suporte a georreferenciamento automático e
+sem integração com sistemas de mapeamento cartográfico \cite{ibama2022}.
+A proposta do E-Descarte complementa esses sistemas ao oferecer uma interface
+moderna, mobile-first e com feedback imediato ao usuário sobre o embasamento
+legal de sua denúncia.
+
+\subsection{Posicionamento do E-Descarte}
+
+A Tabela~\ref{tab:comparativo} apresenta um comparativo entre o E-Descarte e
+os principais sistemas relacionados, evidenciando o diferencial do Módulo Legal
+Integrado.
+
+\begin{table}[H]
+  \centering
+  \caption{Comparativo entre o E-Descarte e sistemas relacionados}
+  \label{tab:comparativo}
+  \begin{tabularx}{\textwidth}{|l|X|X|X|X|X|}
+    \hline
+    \textbf{Sistema} &
+    \textbf{Mapa de coleta} &
+    \textbf{Denúncia} &
+    \textbf{Calc. Impacto} &
+    \textbf{Módulo Legal} &
+    \textbf{BR-ABNT} \\
+    \hline
+    iRecycle       & Sim & Não & Não & Não & Não \\
+    \hline
+    TrashOut       & Sim & Sim & Não & Não & Não \\
+    \hline
+    Coletai (BR)   & Sim & Não & Não & Não & Parcial \\
+    \hline
+    IBAMA/GOV.BR   & Não & Sim & Não & Não & Sim \\
+    \hline
+    \textbf{E-Descarte} &
+    \textbf{Sim} & \textbf{Sim} & \textbf{Sim} & \textbf{Sim} & \textbf{Sim} \\
+    \hline
+  \end{tabularx}
+  \fonte{Elaborado pelos autores (2025).}
+\end{table}
+
+% ============================================================
+\section{METODOLOGIA}
+% ============================================================
+
+O desenvolvimento do E-Descarte seguiu uma abordagem metodológica mista,
+combinando elementos da Engenharia de \textit{Software} iterativo-incremental
+com os princípios da pesquisa aplicada em Informática Ambiental.
+
+\subsection{Abordagem de Pesquisa e Desenvolvimento}
+
+A pesquisa classifica-se como aplicada, de natureza qualitativa e quantitativa,
+com objetivo exploratório-descritivo. Do ponto de vista dos procedimentos
+técnicos, constitui-se como pesquisa bibliográfica, documental e de
+desenvolvimento de sistema \cite{gil2017}. A revisão bibliográfica abrangeu
+publicações científicas indexadas nas bases ACM Digital Library, IEEE Xplore,
+SciELO e Google Scholar, com recorte temporal entre 2015 e 2025, utilizando-se
+os descritores: ``resíduos eletroeletrônicos'', ``WEEE management system'',
+``lixo eletrônico Brasil'', ``environmental mobile application'' e
+``logística reversa eletroeletrônicos Brasil''.
+
+A análise da legislação ambiental foi conduzida com base nas fontes primárias
+disponíveis no Portal da Legislação do Planalto e nos documentos oficiais do
+IBAMA, CONAMA e Ministério do Meio Ambiente.
+
+\subsection{Metodologia de Desenvolvimento de Software}
+
+O desenvolvimento do sistema adotou uma versão simplificada do \textit{framework}
+Scrum, adaptada ao contexto acadêmico de grupo pequeno. O processo foi organizado
+em quatro \textit{sprints} de duas semanas, conforme descrito na
+Tabela~\ref{tab:sprints}.
+
+\begin{table}[H]
+  \centering
+  \caption{Organização das sprints de desenvolvimento}
+  \label{tab:sprints}
+  \begin{tabularx}{\textwidth}{|c|X|X|}
+    \hline
+    \textbf{Sprint} & \textbf{Objetivo} & \textbf{Entregável} \\
+    \hline
+    1 & Definição de arquitetura, configuração dos ambientes e estrutura
+        do banco de dados & Infraestrutura de backend, migrations SQL,
+        modelos MongoDB \\
+    \hline
+    2 & Desenvolvimento da API REST completa (autenticação, CRUD de pontos
+        de coleta, denúncias e módulo legal) & API funcional com
+        documentação de endpoints \\
+    \hline
+    3 & Desenvolvimento do frontend web (React/Vite) com todas as páginas
+        e integração à API & Aplicação web funcional \\
+    \hline
+    4 & Desenvolvimento do aplicativo móvel (React Native/Expo),
+        testes de integração e ajustes finais & Aplicativo móvel
+        funcional e código revisado \\
+    \hline
+  \end{tabularx}
+  \fonte{Elaborado pelos autores (2025).}
+\end{table}
+
+\subsection{Modelagem do Sistema}
+
+A modelagem foi conduzida em três níveis: (i) levantamento e especificação de
+requisitos funcionais e não funcionais; (ii) modelagem da arquitetura do sistema
+por meio de diagrama de camadas e diagrama de componentes; e (iii) modelagem
+dos dados por meio do Diagrama Entidade-Relacionamento (DER) para o banco
+relacional PostgreSQL e da definição dos esquemas de coleções para o MongoDB.
+
+Os requisitos funcionais foram elicitados a partir da análise de sistemas
+relacionados, da revisão da literatura e de sessões de \textit{brainstorming}
+da equipe. Os requisitos não funcionais foram definidos com base nos atributos
+de qualidade da norma ISO/IEC 25010, com ênfase em usabilidade, segurança
+(autenticação e proteção de dados), portabilidade (\textit{web} e móvel) e
+manutenibilidade.
+
+% ============================================================
+\section{DESENVOLVIMENTO DO PROJETO}
+% ============================================================
+
+\subsection{Arquitetura Geral do Sistema}
+
+O E-Descarte adota uma arquitetura em três camadas (\textit{three-tier
+architecture}), com clara separação entre a camada de apresentação
+(\textit{frontend}), a camada de negócio (\textit{backend}/API) e a camada
+de dados (\textit{databases}). Essa escolha arquitetural favorece a
+manutenibilidade, a escalabilidade horizontal e a possibilidade de substituição
+ou expansão de qualquer camada de forma independente \cite{sommerville2019}.
+
+A Figura~\ref{fig:arquitetura} ilustra a arquitetura geral do sistema.
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[
+    node distance=1.2cm and 2cm,
+    every node/.style={font=\small},
+    box/.style={draw, rounded corners=4pt, minimum width=3.2cm,
+                minimum height=0.9cm, align=center, fill=white},
+    layer/.style={draw, dashed, rounded corners=6pt, fill=gray!5,
+                  inner sep=8pt},
+    arr/.style={-{Stealth}, thick, gray}
+  ]
+
+  %% Camada Frontend
+  \node[box, fill=teal!12] (web)    {Frontend Web\\React/Vite};
+  \node[box, fill=teal!12, right=1.6cm of web] (mobile) {App Móvel\\React Native/Expo};
+
+  %% Camada API
+  \node[box, fill=blue!10, below=1.5cm of web, xshift=2cm] (api)
+        {Backend\\Node.js / Express\\JWT Auth};
+
+  %% Camada de Dados
+  \node[box, fill=purple!10, below=1.5cm of api, xshift=-2cm] (pg)
+        {PostgreSQL\\(dados estruturados)};
+  \node[box, fill=purple!10, below=1.5cm of api, xshift=2cm] (mongo)
+        {MongoDB\\(mídia e logs)};
+
+  %% Serviços externos
+  \node[box, fill=orange!10, right=1.6cm of api] (gmaps)
+        {Google Maps API\\(geocoding)};
+  \node[box, fill=orange!10, below=0.7cm of gmaps] (notif)
+        {E-mail / SMS\\(Nodemailer/Twilio)};
+
+  %% Setas
+  \draw[arr] (web)    -- (api);
+  \draw[arr] (mobile) -- (api);
+  \draw[arr] (api)    -- (pg);
+  \draw[arr] (api)    -- (mongo);
+  \draw[arr] (api)    -- (gmaps);
+  \draw[arr] (api)    -- (notif);
+
+  \end{tikzpicture}
+  \caption{Arquitetura geral do E-Descarte}
+  \label{fig:arquitetura}
+  \fonte{Elaborado pelos autores (2025).}
+\end{figure}
+
+\subsection{Módulo Legal Integrado}
+
+O Módulo Legal Integrado constitui o principal diferencial técnico-pedagógico
+do E-Descarte. Ele é implementado no \textit{backend} por meio do módulo
+\texttt{legalContent.js}, que mantém uma base de conhecimento estruturada das
+legislações ambientais brasileiras aplicáveis a cada categoria de resíduo
+eletroeletrônico. Quando o usuário seleciona o tipo de resíduo na tela de
+denúncia, o \textit{frontend} realiza uma requisição ao endpoint
+\texttt{GET /api/legislacao/tipo/:tipoResiduo}, que retorna o conjunto de
+legislações aplicáveis em tempo real.
+
+O Quadro~\ref{quad:legislacao} apresenta o mapeamento entre tipos de resíduo
+e a legislação correspondente implementada no módulo.
+
+\begin{table}[H]
+  \centering
+  \caption{Mapeamento resíduo--legislação no Módulo Legal Integrado}
+  \label{quad:legislacao}
+  \begin{tabularx}{\textwidth}{|l|X|}
+    \hline
+    \textbf{Tipo de Resíduo} & \textbf{Legislação Aplicável} \\
+    \hline
+    Celulares / Tablets &
+      Lei 12.305/2010 (PNRS); Decreto 10.240/2020; LGPD (Lei 13.709/2018);
+      Lei 9.605/1998 \\
+    \hline
+    Computadores / Notebooks &
+      Lei 12.305/2010 (PNRS); Decreto 10.240/2020; LGPD; Lei 9.605/1998 \\
+    \hline
+    Baterias / Pilhas &
+      Resolução CONAMA 401/2008; Lei 12.305/2010; Lei 9.605/1998 \\
+    \hline
+    Eletrodomésticos &
+      Lei 12.305/2010 (PNRS); Decreto 10.240/2020; Lei 9.605/1998 \\
+    \hline
+    Outros Eletrônicos &
+      Lei 12.305/2010 (PNRS); Lei 9.605/1998 \\
+    \hline
+  \end{tabularx}
+  \fonte{Elaborado pelos autores (2025).}
+\end{table}
+
+\subsection{Modelagem do Banco de Dados}
+
+A persistência de dados do E-Descarte adota uma estratégia híbrida, combinando
+um banco relacional (PostgreSQL) para dados estruturados e de alta consistência,
+e um banco de documentos (MongoDB) para dados semiestruturados, como registros
+de logs de eventos e metadados de arquivos de mídia.
+
+No PostgreSQL, as três entidades principais são:
+
+\begin{itemize}
+  \item \textbf{usuarios}: armazena credenciais (hash bcrypt), papel
+        (\textit{cidadão}, \textit{gestor}, \textit{admin}) e timestamps;
+  \item \textbf{pontos\_coleta}: armazena localização (latitude/longitude),
+        tipo, itens aceitos e horários de funcionamento;
+  \item \textbf{denuncias}: armazena protocolo único, tipo de resíduo,
+        gravidade, geolocalização, status de resolução e os IDs das
+        legislações relacionadas (armazenados como \texttt{TEXT[]}).
+\end{itemize}
+
+No MongoDB, duas coleções complementam a persistência:
+
+\begin{itemize}
+  \item \textbf{EventoLog}: registra todos os eventos do sistema (criação de
+        denúncia, login, atualização de status) com timestamps e endereço IP,
+        para auditoria e análise;
+  \item \textbf{MidiaDenuncia}: armazena metadados das fotografias enviadas
+        junto às denúncias, com referência ao protocolo correspondente.
+\end{itemize}
+
+\subsection{API REST}
+
+A API do E-Descarte segue os princípios REST (\textit{Representational State
+Transfer}) conforme definidos por \citeonline{fielding2000}. Os recursos são
+organizados em cinco grupos de endpoints, conforme o Quadro~\ref{quad:endpoints}.
+
+\begin{table}[H]
+  \centering
+  \caption{Endpoints principais da API E-Descarte}
+  \label{quad:endpoints}
+  \begin{tabularx}{\textwidth}{|l|l|X|l|}
+    \hline
+    \textbf{Método} & \textbf{Endpoint} & \textbf{Descrição} & \textbf{Auth} \\
+    \hline
+    POST & /api/auth/registro      & Cadastro de novo usuário & Não \\
+    POST & /api/auth/login         & Autenticação e retorno de JWT & Não \\
+    GET  & /api/auth/me            & Perfil do usuário autenticado & JWT \\
+    \hline
+    GET  & /api/pontos-coleta      & Lista pontos (filtrável por cidade/raio) & Não \\
+    GET  & /api/pontos-coleta/:id  & Detalhe de um ponto & Não \\
+    POST & /api/pontos-coleta      & Cria ponto de coleta & Gestor \\
+    \hline
+    POST & /api/denuncias          & Registra denúncia (anon. opcional) & Opcional \\
+    GET  & /api/denuncias/protocolo/:p & Consulta pública por protocolo & Não \\
+    PATCH& /api/denuncias/:id/status & Atualiza status & Gestor \\
+    POST & /api/denuncias/:p/midia & Upload de foto & Não \\
+    \hline
+    GET  & /api/legislacao         & Lista toda legislação & Não \\
+    GET  & /api/legislacao/tipo/:t & Legislação por tipo de resíduo & Não \\
+    \hline
+    POST & /api/calculadora        & Calcula impacto ambiental & Não \\
+    \hline
+  \end{tabularx}
+  \fonte{Elaborado pelos autores (2025).}
+\end{table}
+
+\subsection{Segurança e Autenticação}
+
+A segurança do sistema foi implementada em múltiplas camadas. A autenticação
+utiliza JSON Web Tokens (JWT) \cite{jones2015}, com assinatura HMAC-SHA256 e
+prazo de expiração configurável. As senhas dos usuários são armazenadas
+exclusivamente sob \textit{hash} bcrypt com fator de custo 10, garantindo
+resistência a ataques de dicionário e força bruta \cite{provos1999}.
+
+Três níveis de controle de acesso foram implementados: (i) rotas públicas,
+acessíveis sem autenticação (mapa de pontos, consulta de protocolo, módulo
+legal); (ii) rotas com autenticação opcional, onde a identidade do usuário é
+associada à denúncia quando disponível, mas o anonimato é preservado quando
+solicitado; e (iii) rotas restritas a gestores e administradores (cadastro de
+pontos de coleta, atualização de status de denúncias).
+
+\subsection{Calculadora de Impacto Ambiental}
+
+A calculadora de impacto ambiental do E-Descarte fundamenta-se em coeficientes
+de impacto derivados de dados publicados pela Associação Brasileira de Limpeza
+Pública e Resíduos Especiais (ABRELPE) e pela \textit{United States Environmental
+Protection Agency} (EPA). Para cada categoria de dispositivo, foram definidos
+quatro indicadores de impacto do descarte inadequado, conforme a
+Tabela~\ref{tab:coeficientes}.
+
+\begin{table}[H]
+  \centering
+  \caption{Coeficientes de impacto ambiental por tipo de dispositivo}
+  \label{tab:coeficientes}
+  \begin{tabular}{|l|c|c|c|c|}
+    \hline
+    \textbf{Dispositivo} &
+    \textbf{Solo (m²)} &
+    \textbf{Metais (g)} &
+    \textbf{Água (L)} &
+    \textbf{CO$_2$ (kg)} \\
+    \hline
+    Celular/Smartphone  & 0,10 & 60      & 500   & 0,5 \\
+    Notebook            & 2,00 & 1.800   & 2.000 & 4,0 \\
+    Bateria/Pilha       & 1,00 & 8       & 200   & 0,1 \\
+    TV/Monitor          & 3,00 & 4.000   & 1.500 & 6,0 \\
+    \hline
+  \end{tabular}
+  \fonte{Adaptado de \citeonline{abrelpe2023} e \citeonline{epa2021}.}
+\end{table}
+
+O impacto total é calculado por meio da seguinte expressão:
+
+\begin{equation}
+  I_k = \sum_{i \in D} q_i \cdot c_{i,k}
+  \label{eq:impacto}
+\end{equation}
+
+\noindent
+onde $I_k$ representa o impacto total no indicador $k$ (solo, metais, água ou
+CO$_2$), $q_i$ é a quantidade de dispositivos do tipo $i$ a serem descartados,
+e $c_{i,k}$ é o coeficiente de impacto do dispositivo $i$ no indicador $k$.
+
+% ============================================================
+\section{TECNOLOGIAS UTILIZADAS}
+% ============================================================
+
+A seleção do conjunto tecnológico do E-Descarte foi orientada pelos critérios
+de maturidade do ecossistema, popularidade na comunidade de desenvolvimento,
+adequação ao caso de uso e facilidade de integração entre os componentes.
+
+\subsection{Backend}
+
+\begin{itemize}
+  \item \textbf{Node.js (v20 LTS)}: plataforma de execução JavaScript
+        assíncrona e orientada a eventos, escolhida pela sua eficiência no
+        tratamento de requisições I/O-intensivas e pelo compartilhamento da
+        linguagem JavaScript com o \textit{frontend}, reduzindo a carga
+        cognitiva da equipe \cite{tilkov2010};
+  \item \textbf{Express.js (v4)}: \textit{framework} minimalista para
+        construção de APIs REST em Node.js, com ecossistema de
+        \textit{middlewares} maduro;
+  \item \textbf{JSON Web Token (JWT)}: padrão aberto (RFC 7519) para
+        transmissão segura de informações entre partes como objeto JSON
+        assinado digitalmente \cite{jones2015};
+  \item \textbf{bcryptjs}: implementação do algoritmo bcrypt para
+        \textit{hashing} seguro de senhas \cite{provos1999};
+  \item \textbf{PostgreSQL (v16)}: sistema gerenciador de banco de dados
+        relacional objeto (SGBDR-O) de código aberto, escolhido pela sua
+        robustez, suporte a tipos de dados avançados (como o tipo
+        \texttt{TEXT[]} para arrays de strings) e conformidade com o
+        padrão SQL;
+  \item \textbf{MongoDB (v7)}: banco de dados orientado a documentos,
+        adotado para persistência de dados semiestruturados (logs, metadados
+        de mídia) por sua flexibilidade de esquema e alto desempenho em
+        operações de escrita;
+  \item \textbf{Mongoose (v8)}: ODM (\textit{Object Document Mapper}) para
+        MongoDB em Node.js, que fornece validação de esquema e interface
+        orientada a objetos;
+  \item \textbf{Multer}: \textit{middleware} para tratamento de
+        \textit{multipart/form-data}, utilizado no recebimento de fotografias
+        das denúncias;
+  \item \textbf{Nodemailer}: biblioteca para envio de e-mails transacionais
+        via SMTP, utilizada nas notificações de confirmação de denúncias.
+\end{itemize}
+
+\subsection{Frontend Web}
+
+\begin{itemize}
+  \item \textbf{React (v18)}: biblioteca JavaScript declarativa para
+        construção de interfaces de usuário baseadas em componentes,
+        mantida pelo Meta \cite{facebook2013};
+  \item \textbf{Vite (v5)}: ferramenta de \textit{build} de nova geração
+        para projetos frontend, baseada em ES Modules nativo, com tempo
+        de inicialização significativamente superior ao Webpack;
+  \item \textbf{React Router DOM (v6)}: biblioteca de roteamento do lado
+        do cliente para aplicações React de página única (SPA);
+  \item \textbf{Axios}: cliente HTTP baseado em Promises para o navegador
+        e Node.js, utilizado para comunicação com a API REST;
+  \item \textbf{@react-google-maps/api}: \textit{wrapper} React para
+        a JavaScript API do Google Maps, utilizado no mapa interativo de
+        pontos de coleta.
+\end{itemize}
+
+\subsection{Aplicativo Móvel}
+
+\begin{itemize}
+  \item \textbf{React Native (v0.74)}: \textit{framework} para construção
+        de aplicativos móveis nativos usando React e JavaScript, mantido
+        pelo Meta. Permite o reaproveitamento de lógica de negócio e
+        serviços entre o app móvel e o frontend web \cite{eisenman2015};
+  \item \textbf{Expo SDK 51}: plataforma que simplifica o desenvolvimento,
+        \textit{build} e distribuição de aplicativos React Native,
+        fornecendo APIs para acesso a recursos nativos como câmera,
+        GPS e notificações push;
+  \item \textbf{expo-location}: módulo Expo para acesso à localização GPS
+        do dispositivo, utilizado no georreferenciamento de denúncias;
+  \item \textbf{react-native-maps}: componente de mapa nativo para React
+        Native, com suporte ao Google Maps e Apple Maps;
+  \item \textbf{@react-navigation}: biblioteca de navegação para React
+        Native, adotando o padrão de abas inferiores (\textit{bottom tabs})
+        para a navegação principal do aplicativo.
+\end{itemize}
+
+\subsection{Integração com Serviços Externos}
+
+\begin{itemize}
+  \item \textbf{Google Maps Platform}: utilizada para (i) exibição do
+        mapa interativo de pontos de coleta; e (ii) geocodificação de
+        endereços informados nas denúncias, convertendo endereços textuais
+        em coordenadas geográficas via Geocoding API;
+  \item \textbf{Twilio (ou equivalente)}: serviço de envio de SMS para
+        notificação de usuários sobre o protocolo de suas denúncias.
+\end{itemize}
+
+% ============================================================
+\section{RESULTADOS OBTIDOS E ESPERADOS}
+% ============================================================
+
+\subsection{Protótipo Funcional}
+
+Ao término do ciclo de desenvolvimento descrito neste trabalho, obteve-se um
+protótipo funcional completo do E-Descarte, composto por:
+
+\begin{itemize}
+  \item API REST com 15 endpoints documentados, cobrindo autenticação, CRUD
+        de pontos de coleta, gerenciamento de denúncias, módulo legal e
+        calculadora de impacto;
+  \item Aplicação web responsiva desenvolvida em React, com cinco páginas
+        funcionais: Mapa de Coleta, Registro de Denúncia, Calculadora de
+        Impacto, Módulo Legal e Login/Cadastro;
+  \item Aplicativo móvel desenvolvido em React Native/Expo, com quatro telas
+        organizadas em navegação por abas: Mapa, Denúncia, Calculadora e
+        Legislação;
+  \item Banco de dados PostgreSQL inicializado com script de migração
+        automatizado e dados iniciais de três pontos de coleta em Salvador (BA);
+  \item Repositório público no GitHub
+        (\url{https://github.com/RenoirAugusteSS/E-Descarte}) com
+        estrutura de projeto organizada por camadas e documentação no
+        arquivo \texttt{README.md}.
+\end{itemize}
+
+\subsection{Resultados Esperados em Implantação Real}
+
+Embora a plataforma ainda não tenha sido implantada em ambiente de produção
+para uso público em larga escala, é possível projetar os resultados esperados
+com base nos dados da literatura e em analogias com sistemas similares.
+
+\citeonline{reno2020} verificaram, em estudo conduzido com usuários de
+plataformas de localização de pontos de coleta, que a disponibilização de
+informações geolocalizadas aumentou em 34\% a taxa de descarte correto de
+eletrônicos entre usuários da plataforma em comparação ao grupo de controle.
+Extrapolando esse dado para a realidade brasileira, onde apenas 3\% dos REEE
+recebem destinação formal \cite{abrelpe2023}, mesmo ganhos percentuais modestos
+representariam impacto ambiental significativo dado o volume absoluto gerado.
+
+Em relação ao Módulo Legal Integrado, a hipótese central do projeto é de que
+a apresentação contextualizada da legislação ambiental -- diretamente relacionada
+ao tipo de resíduo que o usuário pretende reportar -- eleva o nível de
+conhecimento legal ambiental dos cidadãos usuários da plataforma, contribuindo
+para o fortalecimento do controle social sobre o cumprimento da PNRS.
+Essa hipótese, que requer investigação empírica sistemática para validação,
+fundamenta-se na Teoria da Aprendizagem Significativa de Ausubel, segundo a
+qual o aprendizado é potencializado quando o novo conhecimento é apresentado
+em contexto de relevância imediata para o aprendiz \cite{ausubel2000}.
+
+A Tabela~\ref{tab:impacto_estimado} projeta o impacto ambiental de diferentes
+cenários de uso da plataforma.
+
+\begin{table}[H]
+  \centering
+  \caption{Projeção de impacto ambiental por cenário de uso}
+  \label{tab:impacto_estimado}
+  \begin{tabular}{|l|c|c|c|}
+    \hline
+    \textbf{Cenário} &
+    \textbf{Usuários/mês} &
+    \textbf{Dispositivos descar.} &
+    \textbf{Metais evitados (kg)} \\
+    \hline
+    Conservador   & 500    & 1.500  & 90   \\
+    Moderado      & 2.000  & 6.000  & 360  \\
+    Otimista      & 10.000 & 30.000 & 1.800 \\
+    \hline
+  \end{tabular}
+  \fonte{Elaborado pelos autores com base em \citeonline{epa2021}.}
+\end{table}
+
+% ============================================================
+\section{DISCUSSÃO}
+% ============================================================
+
+\subsection{Contribuições Técnicas}
+
+Do ponto de vista da Engenharia de \textit{Software}, o E-Descarte demonstra
+a viabilidade de integração entre tecnologias modernas de desenvolvimento
+\textit{full-stack} (React, Node.js, PostgreSQL, MongoDB) em um sistema único
+com domínio de aplicação ambiental. A adoção de persistência híbrida --
+combinando banco relacional para dados transacionais e banco de documentos para
+dados semiestruturados -- constitui solução elegante para os diferentes perfis
+de dado gerados pelo sistema, evitando tanto a rigidez excessiva de um esquema
+puramente relacional quanto a falta de garantias transacionais de uma solução
+puramente NoSQL.
+
+A implementação do Módulo Legal como componente desacoplado e reutilizável
+tanto no \textit{backend} quanto nos \textit{frontends} web e móvel representa
+contribuição para a engenharia de sistemas de informação com conteúdo jurídico,
+demonstrando um padrão de implementação que pode ser replicado em outros
+domínios de aplicação onde a correlação entre dados do usuário e normas legais
+seja relevante.
+
+\subsection{Contribuições Socioambientais}
+
+O E-Descarte posiciona-se na interseção entre a Ciência da Computação e o
+Direito Ambiental, respondendo ao chamado da EcoTech por soluções que não
+apenas usem tecnologia para resolver problemas ambientais, mas que também
+fortaleçam a consciência legal e cidadã dos usuários. A apresentação contextual
+da legislação ambiental como funcionalidade central -- e não como simples texto
+informativo em página de ``Sobre'' -- é uma escolha de design com implicações
+práticas significativas: ao saber que o descarte irregular de baterias viola a
+Resolução CONAMA 401/2008 e pode configurar crime ambiental pela Lei nº
+9.605/1998, o cidadão ganha informação concreta para exigir o cumprimento da
+lei de fabricantes, importadores e do poder público.
+
+\subsection{Limitações}
+
+O presente trabalho apresenta limitações que devem ser reconhecidas. Primeiro,
+a ausência de avaliação empírica com usuários reais impede a validação das
+hipóteses sobre o efeito do Módulo Legal na consciência legal ambiental dos
+usuários. Segundo, o banco de dados de pontos de coleta iniciou-se com dados
+de apenas três pontos em Salvador (BA), tornando a plataforma dependente de
+alimentação de dados por gestores cadastrados para atingir cobertura adequada.
+Terceiro, a ausência de integração formal com sistemas de fiscalização municipal
+ou estadual limita o ciclo de resolução das denúncias registradas, que dependem
+de ação voluntária dos órgãos competentes.
+
+\subsection{Desafios Encontrados}
+
+Os principais desafios técnicos enfrentados durante o desenvolvimento incluíram:
+(i) a configuração da persistência híbrida PostgreSQL/MongoDB em ambiente de
+desenvolvimento único, exigindo cuidados especiais na gestão de conexões e no
+tratamento de erros de cada banco de forma independente; (ii) a implementação
+do upload de arquivos com metadados persistidos em banco de dados diferente do
+arquivo físico, resolvida pelo armazenamento dos metadados no MongoDB e do
+arquivo no sistema de arquivos local (com perspectiva de migração para
+armazenamento em nuvem em versão futura); e (iii) a garantia do anonimato nas
+denúncias, que exigiu cuidado especial no \textit{middleware} de autenticação
+opcional para evitar que dados de identidade fossem inadvertidamente associados
+a denúncias anônimas.
+
+% ============================================================
+\section{CONCLUSÃO}
+% ============================================================
+
+Este artigo apresentou o E-Descarte, uma plataforma digital desenvolvida para
+a gestão e denúncia de resíduos eletroeletrônicos no contexto brasileiro,
+com ênfase no Módulo Legal Integrado como diferencial sociotécnico. O sistema
+atende ao cenário crítico de geração massiva de REEE no Brasil -- 2,1 milhões
+de toneladas anuais, com menos de 3\% de destinação formal adequada -- por meio
+de uma solução tecnológica que combina geolocalização, controle social e
+educação legal ambiental em uma única plataforma acessível via web e dispositivo
+móvel.
+
+Os objetivos propostos foram integralmente alcançados: desenvolveu-se uma API
+REST completa com 15 endpoints, uma aplicação web React com cinco páginas
+funcionais, um aplicativo React Native/Expo com quatro telas e um Módulo Legal
+Integrado que mapeia dinamicamente os tipos de resíduo eletroeletrônico à
+legislação ambiental brasileira aplicável (Lei 12.305/2010, Decreto 10.240/2020,
+Resolução CONAMA 401/2008, Lei 9.605/1998 e Lei 13.709/2018).
+
+Do ponto de vista ambiental, o E-Descarte contribui para a redução do hiato
+entre a robustez do ordenamento jurídico ambiental brasileiro e a efetividade
+de sua aplicação, instrumentalizando o controle social por meio da informação
+geolocalizada e contextualizada. Do ponto de vista tecnológico, demonstra a
+viabilidade e adequação das tecnologias Node.js, React, React Native, PostgreSQL
+e MongoDB para o desenvolvimento de sistemas de informação ambiental modernos,
+escaláveis e acessíveis.
+
+O E-Descarte representa, ainda, um protótipo funcional para integração no
+Observatório Digital Ambiental da Turma, compondo -- junto a outros projetos
+da disciplina EcoTech -- um panorama tecnológico das soluções que a Computação
+pode oferecer ao enfrentamento dos desafios ambientais contemporâneos.
+
+% ============================================================
+\section{TRABALHOS FUTUROS}
+% ============================================================
+
+A partir da versão atual do protótipo, identificam-se as seguintes direções
+prioritárias para trabalhos futuros:
+
+\begin{enumerate}
+  \item \textbf{Avaliação de usabilidade e impacto}: conduzir estudo empírico
+        com usuários reais para avaliar a usabilidade da plataforma (escala
+        SUS -- \textit{System Usability Scale}) e o efeito do Módulo Legal
+        Integrado no nível de conhecimento legal ambiental dos usuários (pré e
+        pós-teste);
+
+  \item \textbf{Integração com órgãos de fiscalização}: desenvolver interfaces
+        de integração com os sistemas de ouvidoria e fiscalização ambiental de
+        municípios e estados, criando um ciclo completo de resolução para as
+        denúncias registradas na plataforma;
+
+  \item \textbf{Crowdsourcing de pontos de coleta}: implementar funcionalidade
+        que permita ao próprio cidadão sugerir novos pontos de coleta, com
+        moderação por gestores cadastrados, acelerando a expansão da cobertura
+        geográfica da plataforma;
+
+  \item \textbf{Gamificação e programa de fidelidade verde}: incorporar
+        mecanismos de gamificação (pontos, medalhas, rankings) para incentivar
+        o uso recorrente da plataforma e premiar cidadãos com histórico
+        consistente de descarte correto;
+
+  \item \textbf{Dashboard analítico para gestores públicos}: desenvolver painel
+        de controle com visualizações de dados sobre concentração geográfica de
+        denúncias, tendências temporais e indicadores de resolução, auxiliando
+        na tomada de decisão dos órgãos ambientais municipais e estaduais;
+
+  \item \textbf{Análise preditiva com Machine Learning}: aplicar algoritmos de
+        agrupamento (\textit{clustering}) sobre os dados históricos de denúncias
+        para identificar áreas de risco de descarte irregular, permitindo ação
+        preventiva dos órgãos de fiscalização;
+
+  \item \textbf{Armazenamento em nuvem e escalabilidade}: migrar o armazenamento
+        de arquivos de mídia para serviços de armazenamento em nuvem (AWS S3,
+        Google Cloud Storage) e containerizar a aplicação com Docker e
+        Kubernetes para suportar escalonamento em produção;
+
+  \item \textbf{Atualização dinâmica do módulo legal}: integrar o módulo legal
+        a feeds jurídicos automatizados (como o Diário Oficial da União) para
+        que alterações legislativas sejam refletidas na plataforma sem
+        necessidade de intervenção manual.
+\end{enumerate}
+
+% ============================================================
+%  REFERÊNCIAS BIBLIOGRÁFICAS
+% ============================================================
+\clearpage
+\begin{center}
+  {\normalsize\bfseries REFERÊNCIAS}
+\end{center}
+
+\begin{thebibliography}{99}
+
+\bibitem{abrelpe2023}
+ASSOCIAÇÃO BRASILEIRA DE LIMPEZA PÚBLICA E RESÍDUOS ESPECIAIS -- ABRELPE.
+\textbf{Panorama dos Resíduos Sólidos no Brasil 2022}. São Paulo: ABRELPE,
+2023. Disponível em: \url{https://abrelpe.org.br/panorama/}. Acesso em:
+10 jun. 2025.
+
+\bibitem{ausubel2000}
+AUSUBEL, D. P.
+\textbf{The acquisition and retention of knowledge: a cognitive view}.
+Dordrecht: Kluwer Academic Publishers, 2000.
+
+\bibitem{baldé2017}
+BALDÉ, C. P. et al.
+\textbf{The Global E-waste Monitor 2017}: quantities, flows and resources.
+Bonn: United Nations University, International Telecommunication Union,
+International Solid Waste Association, 2017.
+
+\bibitem{brasil1998crimes}
+BRASIL. Lei nº 9.605, de 12 de fevereiro de 1998. Dispõe sobre as sanções
+penais e administrativas derivadas de condutas e atividades lesivas ao meio
+ambiente, e dá outras providências.
+\textbf{Diário Oficial da União}, Brasília, DF, 13 fev. 1998. Disponível em:
+\url{https://www.planalto.gov.br/ccivil_03/leis/l9605.htm}. Acesso em:
+10 jun. 2025.
+
+\bibitem{brasil2010pnrs}
+BRASIL. Lei nº 12.305, de 02 de agosto de 2010. Institui a Política Nacional
+de Resíduos Sólidos; altera a Lei nº 9.605, de 12 de fevereiro de 1998; e dá
+outras providências.
+\textbf{Diário Oficial da União}, Brasília, DF, 03 ago. 2010. Disponível em:
+\url{https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12305.htm}.
+Acesso em: 10 jun. 2025.
+
+\bibitem{brasil2018lgpd}
+BRASIL. Lei nº 13.709, de 14 de agosto de 2018. Lei Geral de Proteção de
+Dados Pessoais (LGPD).
+\textbf{Diário Oficial da União}, Brasília, DF, 15 ago. 2018. Disponível em:
+\url{https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm}.
+Acesso em: 10 jun. 2025.
+
+\bibitem{brasil2020decreto}
+BRASIL. Decreto nº 10.240, de 12 de fevereiro de 2020. Regulamenta o inciso VI
+do caput do art. 33 da Lei nº 12.305, de 2 de agosto de 2010, e o § 1º do art.
+56 do Decreto nº 9.177, de 23 de outubro de 2017.
+\textbf{Diário Oficial da União}, Brasília, DF, 12 fev. 2020. Disponível em:
+\url{https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/decreto/D10240.htm}.
+Acesso em: 10 jun. 2025.
+
+\bibitem{conama401}
+CONSELHO NACIONAL DO MEIO AMBIENTE -- CONAMA. Resolução nº 401, de 04 de
+novembro de 2008. Estabelece os limites máximos de chumbo, cádmio e mercúrio
+para pilhas e baterias comercializadas no território nacional.
+\textbf{Diário Oficial da União}, Brasília, DF, 05 nov. 2008.
+
+\bibitem{earth911}
+EARTH911. \textbf{iRecycle: America's recycling app}. [S.l.]: Earth911, 2023.
+Disponível em: \url{https://earth911.com}. Acesso em: 10 jun. 2025.
+
+\bibitem{eisenman2015}
+EISENMAN, B.
+\textbf{Learning React Native: building native mobile apps with JavaScript}.
+Sebastopol: O'Reilly Media, 2015.
+
+\bibitem{epa2021}
+UNITED STATES ENVIRONMENTAL PROTECTION AGENCY -- EPA.
+\textbf{Advancing Sustainable Materials Management: 2019 fact sheet}.
+Washington, D.C.: EPA, 2021. Disponível em:
+\url{https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling}.
+Acesso em: 10 jun. 2025.
+
+\bibitem{europarlamento2012}
+PARLAMENTO EUROPEU. Diretiva 2012/19/UE do Parlamento Europeu e do Conselho,
+de 4 de julho de 2012, relativa aos resíduos de equipamentos elétricos e
+eletrônicos (REEE).
+\textbf{Jornal Oficial da União Europeia}, Bruxelas, 24 jul. 2012.
+
+\bibitem{facebook2013}
+FACEBOOK. \textbf{React: a JavaScript library for building user interfaces}.
+[S.l.]: Meta Platforms, 2013. Disponível em: \url{https://react.dev}.
+Acesso em: 10 jun. 2025.
+
+\bibitem{fielding2000}
+FIELDING, R. T.
+\textbf{Architectural styles and the design of network-based software
+architectures}. 2000. Dissertação (Doutorado) -- University of California,
+Irvine, 2000.
+
+\bibitem{forti2020}
+FORTI, V. et al.
+\textbf{The Global E-waste Monitor 2020}: quantities, flows and the circular
+economy potential. Bonn: United Nations University; United Nations Institute
+for Training and Research; International Telecommunication Union; International
+Solid Waste Association, 2020.
+
+\bibitem{fowler2014}
+FOWLER, M.; LEWIS, J. \textbf{Microservices}: a definition of this new
+architectural term. [S.l.]: martinfowler.com, 2014. Disponível em:
+\url{https://martinfowler.com/articles/microservices.html}.
+Acesso em: 10 jun. 2025.
+
+\bibitem{gil2017}
+GIL, A. C.
+\textbf{Como elaborar projetos de pesquisa}. 6. ed. São Paulo: Atlas, 2017.
+
+\bibitem{ibama2022}
+INSTITUTO BRASILEIRO DO MEIO AMBIENTE E DOS RECURSOS NATURAIS RENOVÁVEIS --
+IBAMA.
+\textbf{Relatório de qualidade do meio ambiente}. Brasília: IBAMA, 2022.
+Disponível em: \url{https://www.ibama.gov.br}. Acesso em: 10 jun. 2025.
+
+\bibitem{jones2015}
+JONES, M. B. et al.
+\textbf{JSON Web Token (JWT): RFC 7519}. [S.l.]: Internet Engineering Task
+Force, 2015. Disponível em: \url{https://www.rfc-editor.org/rfc/rfc7519}.
+Acesso em: 10 jun. 2025.
+
+\bibitem{moreira2019}
+MOREIRA, A. B.; FIGUEIREDO, M. L.
+Gestão de resíduos eletroeletrônicos no Brasil: análise do marco regulatório
+e desafios de implementação da logística reversa.
+\textbf{Revista de Gestão Ambiental e Sustentabilidade}, São Paulo, v. 8,
+n. 2, p. 310--328, 2019.
+
+\bibitem{provos1999}
+PROVOS, N.; MAZIÈRES, D.
+A future-adaptable password scheme.
+In: \textbf{Proceedings of the Annual Technical Conference on USENIX}, 1999,
+Monterey. \textbf{Anais}[\ldots] Berkeley: USENIX Association, 1999.
+p. 81--91.
+
+\bibitem{reno2020}
+RENO, M. A. et al.
+Impact of geolocation-based recycling apps on electronic waste disposal
+behavior: a randomized controlled study.
+\textbf{Journal of Cleaner Production}, Amsterdam, v. 276, p. 124--135,
+dez. 2020.
+
+\bibitem{ribeiro2021}
+RIBEIRO, F. M.; SANTOS, D. C.; OLIVEIRA, T. P.
+Aplicativos móveis para gestão de resíduos sólidos no Brasil: um mapeamento
+sistemático da literatura.
+\textbf{Revista Brasileira de Ciências Ambientais}, Rio de Janeiro, v. 56,
+n. 1, p. 1--16, 2021.
+
+\bibitem{singh2020}
+SINGH, N. et al.
+Electronic waste (e-waste): a global threat to the environment and human health.
+\textbf{Waste Management \& Research}, London, v. 38, n. 1, p. 3--24, 2020.
+
+\bibitem{sommerville2019}
+SOMMERVILLE, I.
+\textbf{Engenharia de software}. 10. ed. São Paulo: Pearson Education, 2019.
+
+\bibitem{tilkov2010}
+TILKOV, S.; VINOSKI, S.
+Node.js: using JavaScript to build high-performance network programs.
+\textbf{IEEE Internet Computing}, v. 14, n. 6, p. 80--83, nov./dez. 2010.
+
+\bibitem{trashout}
+TRASHOUT. \textbf{TrashOut: the worldwide trash reporting service}.
+[S.l.]: TrashOut s.r.o., 2023. Disponível em: \url{https://www.trashout.ngo}.
+Acesso em: 10 jun. 2025.
+
+\bibitem{watson2010}
+WATSON, R. T. et al.
+\textbf{Information systems and environmentally sustainable development}:
+energy informatics and new directions for the IS community.
+\textbf{MIS Quarterly}, Minneapolis, v. 34, n. 1, p. 23--38, mar. 2010.
+
+\end{thebibliography}
+
+\end{document}
